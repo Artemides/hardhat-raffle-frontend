@@ -3,8 +3,14 @@ import React, { useEffect } from "react";
 import { useMoralis } from "react-moralis";
 
 const NavbarTools = () => {
-  const { enableWeb3, account, isWeb3Enabled, Moralis, deactivateWeb3 } =
-    useMoralis();
+  const {
+    enableWeb3,
+    account,
+    isWeb3Enabled,
+    Moralis,
+    deactivateWeb3,
+    isWeb3EnableLoading,
+  } = useMoralis();
 
   const handleWalletConnect = async () => {
     try {
@@ -46,7 +52,9 @@ const NavbarTools = () => {
       {account ? (
         diyplayRecortedAccount(account)
       ) : (
-        <Button handleClick={handleWalletConnect} text="Connect" />
+        <Button onClick={handleWalletConnect} disabled={isWeb3EnableLoading}>
+          Connect
+        </Button>
       )}
     </div>
   );
