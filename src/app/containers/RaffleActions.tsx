@@ -22,11 +22,19 @@ export const RaffleActions = ({
     msgValue: entranceFee,
   });
 
+  const handleJoinRaffle = async () => {
+    await joinRaffle();
+  };
+
   return (
     <section className=" bg-gray-900 rounded p-4">
       <h4 className="text-center font-bold">Actions</h4>
       <div className="grid place-items-center h-24">
-        <button className="bg-orange-600 px-8 py-4 font-semibold text-2xl rounded hover:bg-orange-500 ease-out duration-300 ">
+        <button
+          className="bg-orange-600 px-8 py-4 font-semibold text-2xl rounded hover:bg-orange-500 ease-out duration-300 disabled:bg-slate-500 disabled:cursor-wait "
+          onClick={handleJoinRaffle}
+          disabled={isFetching || isLoading}
+        >
           Join
         </button>
       </div>
