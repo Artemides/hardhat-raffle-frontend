@@ -21,6 +21,11 @@ export const RaffleDetails = () => {
     contractAddress: raffleAddress,
     functionName: "getEntranceFee",
   });
+  const { runContractFunction: getNumber } = useWeb3Contract({
+    abi: raffle_abi,
+    contractAddress: raffleAddress,
+    functionName: "get",
+  });
 
   useEffect(() => {
     if (!isWeb3Enabled) return;
@@ -37,8 +42,8 @@ export const RaffleDetails = () => {
   return (
     <div className="flex justify-around">
       <RaffleDetail
-        value={`${ethers.formatUnits(entranceFee, "ether")} ETH`}
-        text="Raffle Entrance Fee"
+        value={`${ethers.formatUnits(entranceFee, "ether")}`}
+        text="Entrance Fee"
       />
     </div>
   );
