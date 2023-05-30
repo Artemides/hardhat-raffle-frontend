@@ -8,7 +8,7 @@ import { RaffleDetail } from "@/components/RaffleDetail";
 import { ethers } from "ethers";
 export const RaffleDetails = () => {
   const { chainId, isWeb3Enabled } = useMoralis();
-  const [entranceFee, setEntranceFee] = useState<string>("");
+  const [entranceFee, setEntranceFee] = useState<string>("0");
 
   const chainIdString = parseInt(chainId ?? "").toString();
   const raffleAddress =
@@ -36,12 +36,10 @@ export const RaffleDetails = () => {
 
   return (
     <div className="flex justify-around">
-      {entranceFee && (
-        <RaffleDetail
-          value={`${ethers.formatUnits(entranceFee, "ether")} ETH`}
-          text="Raffle Entrance Fee"
-        />
-      )}
+      <RaffleDetail
+        value={`${ethers.formatUnits(entranceFee, "ether")} ETH`}
+        text="Raffle Entrance Fee"
+      />
     </div>
   );
 };
