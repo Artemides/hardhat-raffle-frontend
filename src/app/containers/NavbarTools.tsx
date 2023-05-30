@@ -32,7 +32,7 @@ const NavbarTools = () => {
 
   const diyplayRecortedAccount = (account: string) => {
     return (
-      <span className="text-bold text-green-400">
+      <span className="bg-orange-600 text-bold text-white rounded-full p-[4px]">
         {`${account.slice(0, 6)}...${account.slice(-4)}`}
       </span>
     );
