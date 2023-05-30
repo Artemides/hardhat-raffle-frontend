@@ -2,7 +2,7 @@ import React from "react";
 import { Players } from "./Players";
 import { RaffleActions } from "./RaffleActions";
 import { RaffleDetail } from "@/components/RaffleDetail";
-import { RaffleDetails } from "./RaffleDetauils";
+import { RaffleDetails } from "./RaffleDetails";
 
 const Raffle = () => {
   return (
