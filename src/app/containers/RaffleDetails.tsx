@@ -10,10 +10,13 @@ import { ethers } from "ethers";
 
 type RaffeDetailProps = {
   raffleAddress: string | undefined;
+  entranceFee: string;
 };
 
-export const RaffleDetails = ({ raffleAddress }: RaffeDetailProps) => {
-  const [entranceFee, setEntranceFee] = useState<string>("0");
+export const RaffleDetails = ({
+  raffleAddress,
+  entranceFee,
+}: RaffeDetailProps) => {
   const [numberOfPlayers, setNumberOfPlayers] = useState<string>("0");
   const { isWeb3Enabled } = useMoralis();
 
@@ -28,12 +31,6 @@ export const RaffleDetails = ({ raffleAddress }: RaffeDetailProps) => {
     functionName: "joinRaffle",
   });
 
-  const { runContractFunction: getEntranceFee } = useWeb3Contract({
-    abi: raffle_abi,
-    contractAddress: raffleAddress,
-    functionName: "getEntranceFee",
-  });
-
   const { runContractFunction: getNumberOfPlayers } = useWeb3Contract({
     abi: raffle_abi,
     contractAddress: raffleAddress,
@@ -44,15 +41,13 @@ export const RaffleDetails = ({ raffleAddress }: RaffeDetailProps) => {
     if (!isWeb3Enabled) return;
 
     const loadRaffleStates = async () => {
-      const raffleEntranceFee = (await getEntranceFee())?.toString();
       const raffleNumberOfPlayers = (await getNumberOfPlayers())?.toString();
 
-      setEntranceFee((raffleEntranceFee as string) ?? "0");
       setNumberOfPlayers((raffleNumberOfPlayers as string) ?? "0");
     };
 
     loadRaffleStates();
-  }, [isWeb3Enabled, getEntranceFee, getNumberOfPlayers]);
+  }, [isWeb3Enabled, getNumberOfPlayers]);
 
   return (
     <div className="flex justify-center gap-8 p-8">
