@@ -19,6 +19,7 @@ export const RaffleActions = ({
     abi: raffle_abi,
     contractAddress: raffleAddress,
     functionName: "joinRaffle",
+    params: {},
     msgValue: entranceFee,
   });
 

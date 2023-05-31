@@ -20,17 +20,6 @@ export const RaffleDetails = ({
   const [numberOfPlayers, setNumberOfPlayers] = useState<string>("0");
   const { isWeb3Enabled } = useMoralis();
 
-  const {
-    runContractFunction: joinRaffle,
-    data: joinRaffleTransaction,
-    isFetching,
-    isLoading,
-  } = useWeb3Contract({
-    abi: raffle_abi,
-    contractAddress: raffleAddress,
-    functionName: "joinRaffle",
-  });
-
   const { runContractFunction: getNumberOfPlayers } = useWeb3Contract({
     abi: raffle_abi,
     contractAddress: raffleAddress,
